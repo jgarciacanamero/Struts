@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ 
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+ 
+<struts-config>
+ 	
+ 	
+ 	
+    <form-beans>
+        <form-bean name="LoginForm" type="javabean.LoginForm"/>
+        <form-bean name="RegistroForm" type="javabean.RegistroForm"/>
+         <form-bean name="TelefonoForm" type="javabean.TelefonoForm"/>
+         <form-bean name="ListadoForm"	type="javabean.ListadoForm"></form-bean>
+    </form-beans> 
+ 
+    <global-forwards>
+        <forward name="opciones"  path="/opciones.jsp"/>
+    </global-forwards>
+ 
+    <action-mappings>
+        <action path="/login" type="actions.LoginAction" name="LoginForm">
+            <forward name="opciones" path="/opciones.jsp"/>
+            <forward name="failure" path="/failure.jsp"/>        
+        </action>
+        
+        <action path="/link" type="actions.LinkAction">
+	        <forward name="success" path="/registrarse.jsp"/>
+	    </action>
+	    
+	    <action name="RegistroForm" input="registrarse.jsp"
+	            path="/registro" type="actions.RegistroAction">
+	        <forward name="clienteRegistrado" path="/login.jsp"/>
+	    </action>
+	    
+	    <action name="TelefonoForm" input="opciones.jsp" scope="session" path="/opciones" type="actions.TelefonosAction">
+	    	<forward name="telefonoSeleccionado" path="/Listado.jsp"></forward>
+	    
+	    </action>
+        
+    </action-mappings>
+
+ 
+</struts-config>
